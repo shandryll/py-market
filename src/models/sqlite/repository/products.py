@@ -1,7 +1,9 @@
 from sqlite3 import Connection as SqliteConnection
 
+from .interfaces.products_repository import IProductsRepository
 
-class ProductsRepository:
+
+class ProductsRepository(IProductsRepository):
     def __init__(self, conn: SqliteConnection) -> None:
         self.__conn = conn
 
@@ -15,7 +17,7 @@ class ProductsRepository:
         product = cursor.fetchone()
         return product
 
-    def insert_product(self, name: str, price: float, quantity: int) -> None:
+    def create(self, name: str, price: float, quantity: int) -> None:
         """."""
         cursor = self.__conn.cursor()
         cursor.execute(

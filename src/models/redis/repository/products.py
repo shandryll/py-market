@@ -2,8 +2,10 @@ from typing import Union
 
 from redis import Redis
 
+from .interfaces.products_repository import IProductsRepository
 
-class RedisRepository:
+
+class RedisRepository(IProductsRepository):
     def __init__(self, redis_conn: Redis) -> None:
         self.__redis_conn = redis_conn
 
