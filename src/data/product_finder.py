@@ -4,8 +4,8 @@ from src.models.redis.repository.interfaces.products_repository import (
 from src.models.sqlite.repository.interfaces.products_repository import (
     IProductsRepository as SQliteProductRepository,
 )
-from src.types.http_request import HttpRequest
-from src.types.http_response import HttpResponse
+from src.schemas.http_request import HttpRequest
+from src.schemas.http_response import HttpResponse
 
 
 class ProductFinder:
