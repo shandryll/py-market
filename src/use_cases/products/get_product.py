@@ -4,18 +4,15 @@ from src.schemas.http_response import HttpResponse
 
 
 class GetProductUseCase:
-    def __init__(self) -> None:
-        self.__product_repository = IProductsRepository
+    def __init__(self, products_repository: IProductsRepository) -> None:
+        self.__products_repository = products_repository
 
-    def execute(self, body: HttpRequest) -> HttpResponse:
+    def execute(self, request: HttpRequest) -> HttpResponse:
         """."""
-        product = self.__product_repository.find_by_name(body.name)
-
-        print("---")
-        print(product)
-        print("---")
+        product_name = request.params
+        product = self.__products_repository.find_by_name(product_name)
 
         if not product:
-            raise Exception("Product not found.")
+            return None
 
         return product

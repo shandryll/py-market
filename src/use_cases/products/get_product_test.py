@@ -1,22 +1,23 @@
-import pytest
-
 from src.repositories.in_memory.in_memory_products_repository import InMemoryProductsRepository
+from src.schemas.http_request import HttpRequest
 from src.use_cases.products.get_product import GetProductUseCase
 
 
-@pytest.mark.skip(reason="Ignorando este teste por enquanto")
-def test_get_product() -> None:
+def test_should_be_possible_to_find_a_product_by_name() -> None:
     """."""
     product_repository = InMemoryProductsRepository()
-    sut = GetProductUseCase()
+    sut = GetProductUseCase(product_repository)
 
-    product_name = {"name": "Garrafa Térmica"}
-    teste = product_repository.find_by_name(product_name)
+    product = {
+        "name": "Garrafa Térmica",
+        "price": 129.90,
+        "quantity": 1,
+    }
 
-    # product = sut.execute(product_name)
+    product_repository.create(product)
 
-    print("---")
-    print(teste)
-    print("---")
+    http_request = HttpRequest(params={"name": "Garrafa Térmica"})
 
-    assert teste == "teste"
+    product = sut.execute(http_request)
+
+    assert product["name"] == "Garrafa Térmica"
