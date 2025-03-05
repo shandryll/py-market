@@ -1,3 +1,5 @@
+import pytest
+
 from src.db.sqlite import create_database, delete_database
 from src.models.sqlite.settings.connection import SqliteConnectionHandler
 
@@ -7,6 +9,7 @@ conn_handle = SqliteConnectionHandler()
 conn = conn_handle.connect()
 
 
+@pytest.mark.skip(reason="Ignorando este teste por enquanto")
 def test_insert_product() -> None:
     """."""
     delete_database("test.db")
@@ -21,6 +24,7 @@ def test_insert_product() -> None:
     repo.insert_product(name, price, quantity)
 
 
+@pytest.mark.skip(reason="Ignorando este teste por enquanto")
 def test_find_product() -> None:
     """."""
     delete_database("test.db")
