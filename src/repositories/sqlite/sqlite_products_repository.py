@@ -22,10 +22,7 @@ class SQliteProductsRepository(IProductsRepository):
         """."""
         cursor = self.__conn.cursor()
         cursor.execute(
-            """
-                INSERT INTO products (name, price, quantity)
-                VALUES (?, ?, ?)
-            """,
-            (product.name, product.price, product.quantity),
+            "INSERT INTO products (name, price, quantity) VALUES (?, ?, ?)",
+            (product["name"], product["price"], product["quantity"]),
         )
         self.__conn.commit()
