@@ -1,7 +1,7 @@
 from sqlite3 import Connection as SqliteConnection
 
-from src.models.product import IProduct
-from src.repositories.products_repository import IProductsRepository
+from models.product import IProduct
+from repositories.products_repository import IProductsRepository
 
 
 class SQliteProductsRepository(IProductsRepository):
