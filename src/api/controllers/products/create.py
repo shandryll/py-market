@@ -13,7 +13,5 @@ def create_product(request: HttpRequest) -> HttpResponse:
 
     return HttpResponse(
         status_code=201,
-        body={
-            "message": "Product created.",
-        },
+        body={},
     )
