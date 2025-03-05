@@ -8,16 +8,6 @@ class InMemoryProductsRepository(IProductsRepository):
     def __init__(self) -> None:
         self.products = []
 
-    def find_by_name(self, params: HttpRequest) -> HttpResponse:
-        """."""
-        product_name = params["name"]
-        product = next((item for item in self.products if item["name"] == product_name), None)
-
-        if not product:
-            return None
-
-        return HttpResponse(body=product, status_code=200)
-
     def create(self, data: HttpRequest) -> HttpResponse:
         """."""
         product = {
@@ -28,3 +18,13 @@ class InMemoryProductsRepository(IProductsRepository):
         self.products.append(product)
 
         return HttpResponse(body=product, status_code=201)
+
+    def find_by_name(self, params: HttpRequest) -> HttpResponse:
+        """."""
+        product_name = params["name"]
+        product = next((item for item in self.products if item["name"] == product_name), None)
+
+        if not product:
+            return None
+
+        return HttpResponse(body=product, status_code=200)

@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from typing import Union
 
 
 @dataclass
@@ -11,11 +12,11 @@ class IProduct:
 
 class IProductsRepository(ABC):
     @abstractmethod
-    def find_by_name(self, name: str) -> tuple:
+    def create(self, data: IProduct) -> dict:
         """."""
         pass
 
     @abstractmethod
-    def create(self, product: IProduct) -> dict:
+    def find_by_name(self, name: str) -> Union[dict, None]:
         """."""
         pass

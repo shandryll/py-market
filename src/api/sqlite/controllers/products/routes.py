@@ -2,12 +2,13 @@ from flask import Blueprint, jsonify, request
 
 from api.sqlite.controllers.products.create import create_product
 from schemas.http_request import HttpRequest
+from schemas.http_response import HttpResponse
 
 products_routes_bp = Blueprint("products_routes", __name__)
 
 
 @products_routes_bp.route("/products", methods=["POST"])
-def create() -> None:
+def create() -> HttpResponse:
     """."""
     http_request = HttpRequest(body=request.json)
     http_response = create_product(http_request)

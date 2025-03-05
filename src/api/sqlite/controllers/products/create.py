@@ -11,7 +11,4 @@ def create_product(request: HttpRequest) -> HttpResponse:
 
     response = create_product_use_case.execute(request)
 
-    return HttpResponse(
-        body=response.body,
-        status_code=response.status_code,
-    )
+    return response
