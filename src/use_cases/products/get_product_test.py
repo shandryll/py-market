@@ -16,7 +16,7 @@ def test_it_should_be_possible_to_find_a_product_by_name() -> None:
 
     product_repository.create(product)
 
-    request = HttpRequest(params={"name": "Garrafa Térmica"})
+    request = HttpRequest(params=product)
     response = sut.execute(request)
 
     assert response.status_code == 200
