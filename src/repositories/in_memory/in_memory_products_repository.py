@@ -19,9 +19,8 @@ class InMemoryProductsRepository(IProductsRepository):
 
         return HttpResponse(body=product, status_code=201)
 
-    def find_by_name(self, data: HttpRequest) -> HttpResponse:
+    def find_by_name(self, name: str) -> HttpResponse:
         """."""
-        product_name = data.params["name"]
-        product = next((item for item in self.products if item["name"] == product_name), None)
+        product = next((item for item in self.products if item["name"] == name), None)
 
         return HttpResponse(body=product, status_code=200)

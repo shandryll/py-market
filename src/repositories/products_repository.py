@@ -17,6 +17,6 @@ class IProductsRepository(ABC):
         pass
 
     @abstractmethod
-    def find_by_name(self, data: IProduct) -> Union[dict, None]:
+    def find_by_name(self, name: str) -> Union[dict, None]:
         """."""
         pass
