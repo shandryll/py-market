@@ -1,8 +1,8 @@
 from sqlite3 import Connection as SqliteConnection
 
-from repositories.products_repository import IProductsRepository
-from schemas.http_request import HttpRequest
-from schemas.http_response import HttpResponse
+from src.repositories.products_repository import IProductsRepository
+from src.schemas.http_request import HttpRequest
+from src.schemas.http_response import HttpResponse
 
 
 class SQliteProductsRepository(IProductsRepository):

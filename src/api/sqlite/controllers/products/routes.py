@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 
-from api.sqlite.controllers.products.create import create_product
-from schemas.http_request import HttpRequest
-from schemas.http_response import HttpResponse
+from src.api.sqlite.controllers.products.create import create_product
+from src.schemas.http_request import HttpRequest
+from src.schemas.http_response import HttpResponse
 
 products_routes_bp = Blueprint("products_routes", __name__)
 

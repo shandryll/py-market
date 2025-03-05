@@ -1,6 +1,6 @@
 from flask import Flask
 
-from api.sqlite.controllers.products.routes import products_routes_bp
+from src.api.sqlite.controllers.products.routes import products_routes_bp
 
 app = Flask(__name__)
 
