@@ -1,8 +1,9 @@
 from src.repositories.in_memory.in_memory_products_repository import InMemoryProductsRepository
+from src.schemas.http_request import HttpRequest
 from src.use_cases.products.create_product import CreateProductUseCase
 
 
-def test_create_product() -> None:
+def test_it_should_be_possible_to_create_a_product() -> None:
     """."""
     product_repository = InMemoryProductsRepository()
     sut = CreateProductUseCase(product_repository)
@@ -15,16 +16,10 @@ def test_create_product() -> None:
         "quantity": 1,
     }
 
-    sut.execute(product)
+    request = HttpRequest(body=product)
+    response = sut.execute(request)
 
-    product = {
-        "name": "Batom",
-        "price": 31.20,
-        "quantity": 2,
-    }
-
-    sut.execute(product)
-
-    assert len(in_memory_products_list) == 2
+    assert response.status_code == 201
+    assert response.body == {"name": "Garrafa Térmica", "price": 129.9, "quantity": 1}
+    assert len(in_memory_products_list) == 1
     assert in_memory_products_list[0]["name"] == "Garrafa Térmica"
-    assert in_memory_products_list[1]["name"] == "Batom"

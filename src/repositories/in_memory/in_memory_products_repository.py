@@ -1,12 +1,14 @@
-from src.models.product import IProduct
-from src.repositories.products_repository import IProductsRepository
+from src.schemas.http_request import HttpRequest
+from src.schemas.http_response import HttpResponse
+
+from ..products_repository import IProductsRepository
 
 
 class InMemoryProductsRepository(IProductsRepository):
     def __init__(self) -> None:
         self.products = []
 
-    def find_by_name(self, params: IProduct) -> tuple:
+    def find_by_name(self, params: HttpRequest) -> HttpResponse:
         """."""
         product_name = params["name"]
         product = next((item for item in self.products if item["name"] == product_name), None)
@@ -14,9 +16,9 @@ class InMemoryProductsRepository(IProductsRepository):
         if not product:
             return None
 
-        return product
+        return HttpResponse(body=product, status_code=200)
 
-    def create(self, data: IProduct) -> IProduct:
+    def create(self, data: HttpRequest) -> HttpResponse:
         """."""
         product = {
             "name": data["name"],
@@ -25,4 +27,4 @@ class InMemoryProductsRepository(IProductsRepository):
         }
         self.products.append(product)
 
-        return product
+        return HttpResponse(body=product, status_code=201)

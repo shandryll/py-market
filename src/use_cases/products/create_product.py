@@ -1,13 +1,14 @@
-from models.product import IProduct
-from repositories.products_repository import IProductsRepository
+from src.repositories.products_repository import IProductsRepository
+from src.schemas.http_request import HttpRequest
+from src.schemas.http_response import HttpResponse
 
 
 class CreateProductUseCase:
     def __init__(self, products_repository: IProductsRepository) -> None:
         self.__products_repository = products_repository
 
-    def execute(self, body: IProduct) -> dict:
+    def execute(self, request: HttpRequest) -> HttpResponse:
         """."""
-        product = self.__products_repository.create(body)
+        response = self.__products_repository.create(request.body)
 
-        return product
+        return response

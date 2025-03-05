@@ -9,10 +9,6 @@ class GetProductUseCase:
 
     def execute(self, request: HttpRequest) -> HttpResponse:
         """."""
-        product_name = request.params
-        product = self.__products_repository.find_by_name(product_name)
+        response = self.__products_repository.find_by_name(request.params)
 
-        if not product:
-            return None
-
-        return product
+        return response

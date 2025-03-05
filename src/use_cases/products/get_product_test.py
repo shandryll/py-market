@@ -3,7 +3,7 @@ from src.schemas.http_request import HttpRequest
 from src.use_cases.products.get_product import GetProductUseCase
 
 
-def test_should_be_possible_to_find_a_product_by_name() -> None:
+def test_it_should_be_possible_to_find_a_product_by_name() -> None:
     """."""
     product_repository = InMemoryProductsRepository()
     sut = GetProductUseCase(product_repository)
@@ -16,8 +16,8 @@ def test_should_be_possible_to_find_a_product_by_name() -> None:
 
     product_repository.create(product)
 
-    http_request = HttpRequest(params={"name": "Garrafa Térmica"})
+    request = HttpRequest(params={"name": "Garrafa Térmica"})
+    response = sut.execute(request)
 
-    product = sut.execute(http_request)
-
-    assert product["name"] == "Garrafa Térmica"
+    assert response.status_code == 200
+    assert response.body["name"] == "Garrafa Térmica"
