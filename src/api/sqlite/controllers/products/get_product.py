@@ -9,9 +9,6 @@ def get_product(request: HttpRequest) -> HttpResponse:
 
     get_product_use_case = make_get_product_use_case()
 
-    get_product_use_case.execute(request.params)
+    response = get_product_use_case.execute(request.params["name"])
 
-    return HttpResponse(
-        status_code=200,
-        body={},
-    )
+    return response
