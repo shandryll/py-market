@@ -1,13 +1,7 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 from typing import Union
 
-
-@dataclass
-class IProduct:
-    name: str
-    price: float
-    quantity: int
+from src.models.product import IProduct
 
 
 class IProductsRepository(ABC):

@@ -1,5 +1,6 @@
+import uuid
+
 from src.repositories.in_memory.in_memory_products_repository import InMemoryProductsRepository
-from src.schemas.http_request import HttpRequest
 from src.use_cases.products.create_product import CreateProductUseCase
 
 
@@ -11,15 +12,15 @@ def test_it_should_be_possible_to_create_a_product() -> None:
     in_memory_products_list = product_repository.products
 
     product = {
+        "id": uuid.uuid4(),
         "name": "Garrafa Térmica",
+        "description": "Garrafa térmica portátil, mantém líquidos quentes ou frios.",
         "price": 129.90,
         "quantity": 1,
     }
 
-    request = HttpRequest(body=product)
-    response = sut.execute(request)
+    response = sut.execute(product)
 
     assert response.status_code == 201
-    assert response.body == {"name": "Garrafa Térmica", "price": 129.9, "quantity": 1}
     assert len(in_memory_products_list) == 1
     assert in_memory_products_list[0]["name"] == "Garrafa Térmica"

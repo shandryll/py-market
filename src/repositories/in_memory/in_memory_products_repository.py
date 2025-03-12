@@ -11,7 +11,9 @@ class InMemoryProductsRepository(IProductsRepository):
     def create(self, data: HttpRequest) -> HttpResponse:
         """."""
         product = {
+            "id": data["id"],
             "name": data["name"],
+            "description": data["description"],
             "price": data["price"],
             "quantity": data["quantity"],
         }

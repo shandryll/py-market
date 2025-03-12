@@ -3,7 +3,7 @@ import requests
 from src.lib.sqlite import create_database, delete_database
 
 
-def test_it_should_be_possible_to_create_a_product() -> None:
+def test_it_should_be_possible_to_create_a_product_in_sqlite() -> None:
     """."""
     delete_database("test.db")
     create_database("test.db")

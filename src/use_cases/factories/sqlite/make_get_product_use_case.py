@@ -1,6 +1,6 @@
-from lib.sqlite import SqliteConnectionHandler
-from repositories.sqlite.sqlite_products_repository import SQliteProductsRepository
-from use_cases.products.get_product import GetProductUseCase
+from src.lib.sqlite import SqliteConnectionHandler
+from src.repositories.sqlite.sqlite_products_repository import SQliteProductsRepository
+from src.use_cases.products.get_product import GetProductUseCase
 
 sqlite_connection_handle = SqliteConnectionHandler("test.db")
 

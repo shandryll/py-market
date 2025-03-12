@@ -1,8 +1,12 @@
-from dataclasses import dataclass
+from typing import Optional
+
+from pydantic import BaseModel
 
 
-@dataclass
-class IProduct:
+class IProduct(BaseModel):
+    id: str
     name: str
+    description: Optional[str] = None
     price: float
-    quantity: int
+    in_stock: bool
+    quantity: Optional[int] = 0

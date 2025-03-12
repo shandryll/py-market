@@ -20,7 +20,7 @@ class SQliteProductsRepository(IProductsRepository):
 
         return HttpResponse(body=data, status_code=201)
 
-    def find_by_name(self, name: str) -> tuple:
+    def find_by_name(self, name: str) -> HttpResponse:
         """."""
         cursor = self.__conn.cursor()
         cursor.execute(
@@ -28,4 +28,5 @@ class SQliteProductsRepository(IProductsRepository):
             (name),
         )
         product = cursor.fetchone()
-        return product
+        print(product)
+        return HttpResponse(body={product}, status_code=200)

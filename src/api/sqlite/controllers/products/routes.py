@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 
-from src.api.sqlite.controllers.products.create import create_product
+from src.api.sqlite.controllers.products.create_product import create_product
+from src.api.sqlite.controllers.products.get_product import get_product
 from src.schemas.http_request import HttpRequest
 from src.schemas.http_response import HttpResponse
 
@@ -16,6 +17,8 @@ def create() -> HttpResponse:
 
 
 @products_routes_bp.route("/products/<product_name>", methods=["GET"])
-def get_product(product_name: str) -> None:
+def get(product_name: str) -> None:
     """."""
-    return jsonify({"message": f"Produto cadastrado: {product_name}"}), 200
+    http_request = HttpRequest(params={"name": product_name})
+    http_response = get_product(http_request)
+    return jsonify(http_response.body), http_response.status_code

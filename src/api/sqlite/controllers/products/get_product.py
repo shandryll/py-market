@@ -1,6 +1,6 @@
-from schemas.http_request import HttpRequest
-from schemas.http_response import HttpResponse
-from use_cases.factories.sqlite.make_get_product_use_case import make_get_product_use_case
+from src.schemas.http_request import HttpRequest
+from src.schemas.http_response import HttpResponse
+from src.use_cases.factories.sqlite.make_get_product_use_case import make_get_product_use_case
 
 
 def get_product(request: HttpRequest) -> HttpResponse:
