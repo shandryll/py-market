@@ -1,0 +1,16 @@
+services:
+  py-market-db:
+    image: bitnami/postgresql
+    container_name: py-market_postgres_container
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=pymarket
+    volumes:
+      - postgres_data:/bitnami/postgresql
+
+volumes:
+  postgres_data:
+    driver: local

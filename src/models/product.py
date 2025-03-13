@@ -8,5 +8,4 @@ class IProduct(BaseModel):
     name: str
     description: Optional[str] = None
     price: float
-    in_stock: bool
     quantity: Optional[int] = 0
